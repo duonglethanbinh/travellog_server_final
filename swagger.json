@@ -1,0 +1,547 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is Docs for Travellog System.<br>There are some basic CRUD for a user who communicates with the server by making a request.<br>This is a API Docs written by .json.",
+        "version": "1.0.0",
+        "title": "Travellog API",
+        "contact": {
+            "email": "17520279@gm.uit.edu.vn",
+            "name": "Duong Le Thanh Binh and Tran Hoang Long"
+        },
+        "servers": [
+            "http://localhost:4000"
+        ]
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Main"
+                ],
+                "summary": "Get the response of the server. << We are at server >>",
+                "description": "Get response from main page",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "We are at server"
+                    }
+                }
+            }
+        },
+        "/blogs": {
+            "get": {
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Get all blog comments from database ",
+                "description": "The request will sent back all blog comments of users. Include: <br/><ul><li>_id</li><li>name</li><li>title</li><li>content</li><li>created</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all data from .json file"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogs",
+                        "in": "body",
+                        "description": "blogs that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/blogs"
+                        }
+                    }
+                ],
+                "summary": "Post new comment of user to database.",
+                "description": "Post to mongodb atlas, the get response.<br/>In other word, add new blog<br/>User will provide some information.<br/> Example for 'name' must be: <br/><ul><li>Ha Noi</li><li>Ho Chi Minh</li><li>Hue</li><li>Da Nang</li><li>Phong Nha</li><li>Sapa</li><li>Ben Tre</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get back data of .json file. Including all data which already filled."
+                    }
+                }
+            }
+        },
+        "/blogs/{blogsID}/data": {
+            "get": {
+                "tags": [
+                    "Blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogsID",
+                        "in": "path",
+                        "description": "ID of blogs that needs to be search. Example: <ul><li>5ec236084152380017ed5914</li><li>5eb68c02f92daf001749af6c</li><li>5eb688ef044d2a3f109ae89e</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "summary": "Search single document by ID from blogs page",
+                "description": "Get response from search ID blogs page<br/> Include: <br/><ul><li>_id</li><li>name</li><li>title</li><li>content</li><li>created</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get single search data of .json file"
+                    }
+                }
+            }
+        },
+        "/blogs/{blogsID}": {
+            "get": {
+                "tags": [
+                    "Blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogsID",
+                        "in": "path",
+                        "description": "Name of blogs that needs to be search. Example: <ul><li>Ha Noi</li><li>Ho Chi Minh</li><li>Hue</li><li>Da Nang</li><li>Phong Nha</li><li>Sapa</li><li>Ben Tre</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "summary": "Search by name of place from blogs page",
+                "description": "Get response from search blogs page<br/> Include: <br/><ul><li>_id</li><li>name</li><li>title</li><li>content</li><li>created</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get single search data of .json file"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogsID",
+                        "in": "path",
+                        "description": "ID of blog that needs to be update. Example: <ul><li>5ec236084152380017ed5914</li><li>5eb68c02f92daf001749af6c</li><li>5eb688ef044d2a3f109ae89e</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content update",
+                        "in": "body",
+                        "description": "Type your update content in here",
+                        "schema": {
+                            "$ref": "#/definitions/blogs"
+                        }
+                    }
+                ],
+                "summary": "Update single document by ID of this blog",
+                "description": "Patch data to update, then get json data response: { message: 'blog updated' } ",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get update message { message: 'blog updated' } "
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Blogs"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogsID",
+                        "in": "path",
+                        "description": "ID of blog that needs to delete. Example: <ul><li>5ec236084152380017ed5914</li><li>5eb68c02f92daf001749af6c</li><li>5eb688ef044d2a3f109ae89e</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "summary": "Delete single document by ID of this blog",
+                "description": "Delete data to update, then get json data response: { message: 'blog deleted' }",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get delete message { message: 'blog deleted' }"
+                    }
+                }
+            }
+        },
+        "/places": {
+            "get": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Get list places from the server",
+                "description": "Get response from places page. Include: <br/><ul><li>_id</li><li>name</li><li>image</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all data of .json file"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Places"
+                ],
+                "parameters": [
+                    {
+                        "name": "places",
+                        "in": "body",
+                        "description": "Place that we want to create. Example: <br/><ul><li>'name': Ben Tre 2</li><li>'image': https://travellog-server.herokuapp.com/uploads/bentre2.jpg</li></ul>",
+                        "schema": {
+                            "$ref": "#/definitions/places"
+                        }
+                    }
+                ],
+                "summary": "Post to mongodb atlas, then get data response.",
+                "description": "Post to mongodb atlas, then get data response. Include: <br/><ul><li>_id</li><li>name</li><li>image</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get back json data"
+                    }
+                }
+            }
+        },
+        "/places/{placesID}/data": {
+            "get": {
+                "tags": [
+                    "Places"
+                ],
+                "parameters": [
+                    {
+                        "name": "placesID",
+                        "in": "path",
+                        "description": "ID of places that needs to be search. Example: <ul><li>5eb0bf146975b31034797484</li><li>5eb0c0066975b31034797485</li><li>5eb0c0446975b31034797486</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "summary": "Search single document by ID from places page",
+                "description": "Get response from search ID place page<br/> Include: <br/><ul><li>_id</li><li>name</li><li>image</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get single search json data"
+                    }
+                }
+            }
+        },
+        "/places/{placesID}": {
+            "patch": {
+                "tags": [
+                    "Places"
+                ],
+                "parameters": [
+                    {
+                        "name": "placesID",
+                        "in": "path",
+                        "description": "ID of place that needs to be update. Example: <ul><li>5eb0bf146975b31034797484</li><li>5eb0c0066975b31034797485</li><li>5eb0c0446975b31034797486</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content update",
+                        "in": "body",
+                        "description": "Type your update content in here",
+                        "schema": {
+                            "$ref": "#/definitions/places"
+                        }
+                    }
+                ],
+                "summary": "Update single document by ID of this place",
+                "description": "Patch data to update, then get json data response: { message: 'place updated' }",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get update message { message: 'place updated' } "
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Places"
+                ],
+                "parameters": [
+                    {
+                        "name": "placesID",
+                        "in": "path",
+                        "description": "ID of places that needs to delete. Example: <ul><li>5eb0bf146975b31034797484</li><li>5eb0c0066975b31034797485</li><li>5eb0c0446975b31034797486</li></ul>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "summary": "Delete single document by ID of this place",
+                "description": "Delete data to update, then get json data response: { message: 'place deleted' }",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get delete message { message: 'place deleted' }"
+                    }
+                }
+            }
+        },
+        "/contacts": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Get response data from contacts page",
+                "description": "Get response data from contacts page.<br/>Include: <br/><ul><li>_id</li><li>name</li><li>email</li><li>message</li><li>__v</li></ul>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all json data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "parameters": [
+                    {
+                        "name": "contacts",
+                        "in": "body",
+                        "description": "Add new contact",
+                        "schema": {
+                            "$ref": "#/definitions/contacts"
+                        }
+                    }
+                ],
+                "summary": "Post to mongodb atlas, then get data response.",
+                "description": "Post to mongodb atlas, then get data response. <br/>In other word, add new contact",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get back json data"
+                    }
+                }
+            }
+        },
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "users",
+                        "in": "body",
+                        "description": "Add new users",
+                        "schema": {
+                            "$ref": "#/definitions/users"
+                        }
+                    }
+                ],
+                "summary": "Resgiter a new account",
+                "description": "Create new account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered"
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login to system",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Login to systems",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "places": {
+            "required": [
+                "name",
+                "image"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "blogs": {
+            "required": [
+                "name",
+                "title",
+                "content",
+                "created"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "contacts": {
+            "required": [
+                "name",
+                "email",
+                "message"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "users": {
+            "required": [
+                "first_name",
+                "last_name",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

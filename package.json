@@ -1,0 +1,38 @@
+{
+  "name": "travellog-backend",
+  "version": "1.0.0",
+  "description": "It's place where API can automatically run",
+  "main": "server.js",
+  "scripts": {
+    "debug": "nodemon server.js",
+    "eslint": "eslint ./",
+    "eslint-fix": "eslint ./ --fix",
+    "build": "webpack -p",
+    "start": "node ./dist/my-webpack.bundle.js"
+  },
+  "author": "Thanh Binh vs Hoang Long",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.31",
+    "mongoose": "^5.9.11",
+    "nodemon": "^2.0.3",
+    "path": "^0.12.7",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.0.0",
+    "eslint-config-google": "^0.14.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
