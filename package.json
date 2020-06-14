@@ -1,5 +1,5 @@
 {
-  "name": "travellog-backend",
+  "name": "travellog-server-final",
   "version": "1.0.0",
   "description": "It's place where API can automatically run",
   "main": "server.js",

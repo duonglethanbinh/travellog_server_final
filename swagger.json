@@ -228,7 +228,7 @@
                     {
                         "name": "places",
                         "in": "body",
-                        "description": "Place that we want to create. Example: <br/><ul><li>'name': Ben Tre 2</li><li>'image': https://travellog-server.herokuapp.com/uploads/bentre2.jpg</li></ul>",
+                        "description": "Place that we want to create. Example: <br/><ul><li>'name': Ben Tre 2</li><li>'image': https://travellog-server-final.herokuapp.com/uploads/bentre2.jpg</li></ul>",
                         "schema": {
                             "$ref": "#/definitions/places"
                         }
